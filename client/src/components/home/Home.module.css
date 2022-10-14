@@ -1,0 +1,23 @@
+:root{
+    --primary-color: #024a86;
+}
+
+.home{
+    border: 1px solid var(--primary-color);
+
+    min-height: 200rem;
+    display: flex;
+    flex-direction: row;
+}
+    .buttonsPage{
+        border:1px solid #ff0033;
+        width: 5%;
+        display: flex;
+    }
+    .buttonsPage button{
+        width: 100%;
+    }
+    .cards{
+        margin: 0 .5rem;
+        width: 95%;
+    }

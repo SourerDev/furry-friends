@@ -1,0 +1,26 @@
+:root{
+    --primary-color: #024a86;
+}
+
+.card{
+    border: 1px solid var(--primary-color);
+    border-radius: .5rem;
+
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    padding: .5rem;
+}
+
+    .image{
+        border: 1px solid #c82a54;
+        width: 100%;
+    }
+        .image img{
+            width: 100%;
+        }
+    .attributes{
+        border: 1px solid #ff0099;
+        width: 100%;
+        
+    }
