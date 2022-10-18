@@ -4,6 +4,8 @@ import { Action } from "./index";
 import {Dog,Dogs,Temperament} from "../../interfaces/interfaces";
 import { dogsApi } from "../../services/index";
 
+let start = true;
+
 export const getAllDogs=()=>{
     return async (dispatch:Dispatch<Action>)=>{
         const response = await dogsApi.getDogs()
@@ -12,6 +14,14 @@ export const getAllDogs=()=>{
             type: ActionTypes.GET_ALL_DOGS,
             payload: value
         })
+
+        if (start) {
+            dispatch({
+                type: ActionTypes.SET_DOGS,
+                payload: value
+            })
+           start = false
+        }
     }
 }
 
@@ -35,6 +45,15 @@ export const getAllTemperaments = ()=>{
             payload: value
         })
     }   
+}
+
+export const setDogs=(dogs:Array<Dogs>)=>{
+    return (dispatch:Dispatch<Action>)=>{
+        dispatch({
+            type: ActionTypes.SET_DOGS,
+            payload:dogs
+        })
+    }
 }
 
 export const setPage = (page:number) => {

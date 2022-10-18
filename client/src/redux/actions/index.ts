@@ -1,9 +1,14 @@
+import { type } from "os";
 import { Dog, Dogs, Temperament } from "../../interfaces/interfaces";
 import { ActionTypes } from "./actionTypes";
 
 interface allDogs{
     type: ActionTypes.GET_ALL_DOGS,
     payload:Array<Dogs>
+}
+interface dogs{
+    type: ActionTypes.SET_DOGS,
+    payload: Array<Dogs>
 }
 interface oneDog{
     type: ActionTypes.GET_ONE_DOG,
@@ -20,4 +25,4 @@ interface setPage{
     payload: number
 }
 
-export type Action = allDogs | allTemperaments | oneDog | setPage
+export type Action = allDogs | allTemperaments | oneDog | setPage | dogs

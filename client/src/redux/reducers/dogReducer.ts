@@ -1,26 +1,32 @@
 import { ActionTypes } from "../actions/actionTypes";
 import { Action } from "../actions";
 
-const initialState={
-    allDogs:[],
-    oneDog:{}
+const initialState = {
+    allDogs: [],
+    Dogs: [],
+    oneDog: {}
 }
 
-const reducer = (state:object = initialState, action:Action)=>{
+const reducer = (state: object = initialState, action: Action) => {
     switch (action.type) {
         case ActionTypes.GET_ALL_DOGS:
-            return{
+            return {
                 ...state,
                 allDogs: action.payload
             }
-            
-            case ActionTypes.GET_ONE_DOG:
-                return{
-                    ...state,
-                    oneDog: action.payload
-                }
+        
+        case ActionTypes.SET_DOGS:
+            return{
+                ...state,
+                Dogs: action.payload
+            }
+        case ActionTypes.GET_ONE_DOG:
+            return {
+                ...state,
+                oneDog: action.payload
+            }
         default:
-            return{...state}
+            return { ...state }
     }
 }
 

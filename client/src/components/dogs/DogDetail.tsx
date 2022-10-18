@@ -21,9 +21,9 @@ const DogDetail=()=>{
     
     return(
         <div>
-            <h1>Dog Detail {oneDog?.name}</h1>
+            <h1>{oneDog?.name}</h1>
             <div>
-                <img src={oneDog?.name} alt={oneDog?.name} />
+                <img src={oneDog?.image} alt={oneDog?.name} />
             </div>
         </div>
     )

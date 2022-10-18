@@ -1,22 +1,23 @@
 import { NavLink } from "react-router-dom";
+const styles = require('./navBar.module.css').default
 
 const NavBar = () => {
   return (
-    <div>
-      <div>
-        <h2><NavLink to={'/'}>
+    <div className={styles.container}>
+      <div className={styles.title}>
+        <h2><NavLink to={'/'} className={()=>styles.navLink}>
             Dogs App
         </NavLink></h2>
       </div>
-      <nav>
+      <nav className={styles.nav}>
         <ul>
-            <li><NavLink to={'/home'}>
-                Home    
-            </NavLink></li>
+            <NavLink to={'/home'} className={()=>styles.navLink}>
+                <li>Home </li>   
+            </NavLink>
 
-            <li><NavLink to={'/Create'}>
-                Create Dog    
-            </NavLink></li>
+            <NavLink to={'/Create'} className={()=>styles.navLink}>
+                <li>Create Dog</li>    
+            </NavLink>
         </ul>
       </nav>
     </div>

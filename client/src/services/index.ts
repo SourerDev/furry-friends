@@ -1,4 +1,4 @@
-import { Dog } from '../interfaces/interfaces';
+import { DogPost } from '../interfaces/interfaces';
 import {instance} from './api/baseApi';
 
 const dogs = 'dogs'
@@ -14,7 +14,7 @@ export const dogsApi = {
     getTemperaments: function(){
         return instance.get(`${temperaments}`)
     },
-    postDog: function (dog:Dog) {
+    postDog: function (dog:DogPost) {
         return instance.post(`${dogs}`,dog)
     }
 }

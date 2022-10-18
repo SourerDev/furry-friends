@@ -1,0 +1,36 @@
+:root{
+    --primary-colosr: #7570cbc1;
+}
+
+.container{
+    text-align: left;
+    margin-bottom: .5rem;
+    background-color:var(--primary-colosr);
+    box-shadow: 0px 1px 10px rgba(23, 23, 186, 0.83);
+}
+    .title{}
+    .title h2, .nav ul{
+        margin: 0;
+        padding:1rem 5%;
+    }
+
+    .nav{}
+        .nav ul{
+            padding:.5rem 5%;
+
+            display: flex;
+            list-style-type: none;
+        }
+        .nav li{
+            padding: .2rem .5rem;
+            border-radius: .5rem;
+        }
+        .nav li:hover{
+            background-color: #2c1782;
+            color: white;
+        }
+
+.navLink{
+    text-decoration: none;
+    color: black;
+}
