@@ -1,8 +1,15 @@
+:root{
+  --primary-color:#012a4a;;
+  --secondary-color:#a9d6e5;
+  --back-color: #21252946;
+}
+
 body{
   text-align: center;
-  height: 95vh;
+  height: 98.5vh;
   margin: 0;
   padding: 0 .5rem;
+  background: linear-gradient(to top left, var(--primary-color), var(--secondary-color));
 }
 
 #root{
