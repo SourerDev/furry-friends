@@ -19,8 +19,8 @@ function App() {
   const {getAllDogs,getAllTemperaments} = bindActionCreators(actionCreators,dispatch);
 
   useEffect(()=>{
-    getAllTemperaments()
-    getAllDogs()
+    //getAllTemperaments()
+    //getAllDogs()
   },[])
   return (
     <div className="App">
