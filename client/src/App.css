@@ -9,7 +9,7 @@ body{
   height: 98.5vh;
   margin: 0;
   padding: 0 .5rem;
-  background: linear-gradient(to top left, var(--primary-color), var(--secondary-color));
+  background-image: linear-gradient(to right top, #1e3fda, #2956e0, #3b6ae5, #507de7, #6690e8, #60a1f0, #61b0f5, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);  
 }
 
 #root{

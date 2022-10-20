@@ -1,9 +1,114 @@
+.container{
+    height:86%;
+    background-color: var(--back-color);
 
-
-.msgSuccess{
-    display: block;
 }
+    .containerForm{
+        padding: 1rem;
+    }
+        .form{
+            border: 1px solid red;
+        }
+        .inputGroup{
+            color: white;
+            position: relative;
+            margin: 1rem;
+            text-align: left;
+        }
+            .input{
+                color: white;
+                width: 100%;
+                border: none;
+                outline: none;
+                background: none;
+                border-bottom: 1px solid gray;
+                font-size: 14px;
+
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+            .input:hover{
+                height: 2rem;
+            }
+            .input:focus{
+                height: 2rem;
+                border-bottom: 2px solid blue;
+            }
+            .label{
+                position: absolute;
+                left:12px;
+                top: -10px;
+            }
+            
+            .error{
+                color: rgb(160, 42, 42);
+            }
+            .containerCreate{
+
+            }
+                .button{
+                    width: 140px;
+                    height: 45px;
+                    font-size: 23px;
+                    cursor: pointer;
+                    border: none;
+                    outline: none;
+                    background: transparent;
+                    color: white;
+                    font-family:'Times New Roman', Times, serif;
+                    font-weight: 799;
+                    position: relative;
+                    transition: all 0.5s;
+                    z-index: 1;
+                }
+                .button::before{
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 5px;
+                    height: 100%;
+                    background-color: white;
+                    z-index: -1;
+                    transition: all 0.5s;
+                }
+                .button:hover::before{
+                    width: 100%;
+                }
+                .button:hover{
+                    color: black;
+                }
+                .button:active::before{
+                    background: #b9b9b9;
+                }
+
+                
 
 .noSee{
     display: none;
 }
+
+.msgSuccess{
+    background: #89c2d9;
+    color: green;
+    position: fixed;
+    margin: .5rem;
+    padding: .5rem;
+    display:block;
+    bottom: 1px;
+    right: 1px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 5px 10px #013a63;
+}
+ .msgSuccess img{
+    width: 20%;
+    margin: 0;
+    padding: 0;
+    padding-right: .5rem;
+ }
+
+ @media screen {
+    
+ }

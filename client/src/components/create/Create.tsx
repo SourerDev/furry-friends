@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../redux";
 
+import DogCard from "../dogs/DogCard";
 import image from "../../images";
 import { FormState } from "../../interfaces/interfaces";
 import { validations, divTime } from "../../utils";
@@ -126,76 +127,85 @@ const Create = () => {
       });
   };
   return (
-    <div>
-      <div>
-        <h1>Create Dog</h1>
+    <div className={styles.container}>
+      <div className={styles.card}>
       </div>
 
-      <div>
-        <form onSubmit={submit}>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
+      <div className={styles.containerForm}>
+        <form onSubmit={submit} className={styles.form}>
+
+          <div className={styles.inputGroup}>
+          <input
+              type="value"
+              required={false}
               id="name"
               name="name"
               value={state.name}
               onChange={changeState}
-              placeholder={"ex: Affenpinscher"}
+              autoComplete='off'
+              className={styles.input}
             />
-            <span>{error.name}</span>
+            <label htmlFor="name" className={state.name? styles.noSee: styles.label}>Name</label>
+            <span className={styles.error}>{error.name}</span>
           </div>
 
-          <div>
-            <label htmlFor="height">Height</label>
+          <div className={styles.inputGroup}>
             <input
               type="text"
               id="height"
               name="height"
               value={state.height}
               onChange={changeState}
-              placeholder="ex: 23 - 29"
+              autoComplete="off"
+              className={styles.input}
             />
-            <span>{error.height}</span>
+            <label htmlFor="height" className={state.height? styles.noSee: styles.label}>Height</label>
+            <span className={styles.error}>{error.height}</span>
           </div>
 
-          <div>
-            <label htmlFor="weight">Weight</label>
+          <div className={styles.inputGroup}>
             <input
               type="text"
               id="weight"
               name="weight"
               value={state.weight}
               onChange={changeState}
-              placeholder="ex: 3 - 6"
+              autoComplete='off'
+              className={styles.input}
             />
-            <span>{error.weight}</span>
+            <label htmlFor="weight" className={state.weight ? styles.noSee: styles.label}>Weight</label>
+            <span className={styles.error}>{error.weight}</span>
           </div>
-          <div>
-            <label htmlFor="life">Life Span</label>
+
+          <div className={styles.inputGroup}>
             <input
               type="text"
               id="life"
               name="life"
               value={state.life}
               onChange={changeState}
-              placeholder={"ex: 10 - 12"}
+              autoComplete='off'
+              className={styles.input}
             />
-            <span>{error.life}</span>
+            <label htmlFor="life" className={state.life ? styles.noSee: styles.label}>Life Span</label>
+            <span className={styles.error}>{error.life}</span>
           </div>
-          <div>
-            <label htmlFor="image">Image</label>
+
+          <div className={styles.inputGroup}>
             <input
               type="text"
               id="image"
               name="image"
               value={state.image}
               onChange={changeState}
+              autoComplete='off'
+              className={styles.input}
             />
-            <span>Error</span>
+            <label htmlFor="image" className={state.image? styles.noSee: styles.label}>Image</label>
+            <span className={styles.error}>{error.image}</span>
           </div>
-          <div>
-            <label htmlFor="temperament">Temperament</label>
+
+          <div className={styles.inputGroup}>
             <input
               id="temperament"
               list="temperaments"
@@ -203,7 +213,10 @@ const Create = () => {
               value={state.temperament}
               onKeyDown={changeStateTemperament}
               onChange={changeState}
+              className={styles.input}
+              autoComplete='off'
             />
+            <label htmlFor="temperament" className={state.temperament ? styles.noSee : styles.label}>Temperament</label>
 
             <datalist id="temperaments">
               {temperaments?.length ? (
@@ -216,9 +229,9 @@ const Create = () => {
             </datalist>
           </div>
 
-          <div>
+          <div className={styles.containerCreate}>
             <span>{error.post}</span>
-            <button
+            <button className={styles.button}
               type="submit"
               disabled={
                 error.name ||
@@ -235,7 +248,15 @@ const Create = () => {
           </div>
         </form>
       </div>
-      <div></div>
+      <div>
+              <DogCard
+                id={'null'}
+                name={state.name}
+                image={state.image}
+                temperaments={['no have']}
+                weight={state.weight}
+              />
+      </div>
       <div className={styles.noSee} id="msgSuccess">
         <img src={post.img ? image.success : image.warning} alt="No Found" />
         <span>{post.msg}</span>
