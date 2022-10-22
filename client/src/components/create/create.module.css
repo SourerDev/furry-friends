@@ -5,9 +5,13 @@
 }
     .containerForm{
         padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
     }
         .form{
-            border: 1px solid red;
+            width: 70%;
         }
         .inputGroup{
             color: white;
@@ -44,6 +48,7 @@
                 color: rgb(160, 42, 42);
             }
             .containerCreate{
+                
 
             }
                 .button{
@@ -81,8 +86,12 @@
                 .button:active::before{
                     background: #b9b9b9;
                 }
-
-                
+    .dogcard{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: rem;
+    }
 
 .noSee{
     display: none;
@@ -109,7 +118,21 @@
     padding-right: .5rem;
  }
 
- @media screen {
-    
+ @media screen and (max-width: 700px){
+    .dogcard{
+        margin-bottom: 2rem;
+    }
+ }
+
+ @media screen and (min-width: 701px) {
+    .container{
+        display: flex;
+    }
+        .dogcard{
+            flex: 1;
+        }
+        .containerForm{
+            flex:2;
+        }
  }
  

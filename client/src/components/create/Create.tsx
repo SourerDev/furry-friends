@@ -248,7 +248,7 @@ const Create = () => {
           </div>
         </form>
       </div>
-      <div>
+      <div className={styles.dogcard}>
               <DogCard
                 id={'null'}
                 name={state.name}
