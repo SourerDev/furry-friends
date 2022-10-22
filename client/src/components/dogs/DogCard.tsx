@@ -3,23 +3,28 @@ import { Dogs } from "../../interfaces/interfaces";
 const styles = require("./Dogcard.module.css").default;
 
 const DogCard = (props: Dogs) => {
-  return (
-    <div className={styles.card}>
-      <div className={styles.image}>
-        <img src={props.image} alt={props.name} />
-      </div>
 
-      <div className={styles.description}>
-        <div style={{}}>
-          <h3 className={styles.name}>San Carlo</h3>
-        </div>
-        <div style={{ textAlign: "left", display: "flex" ,flexDirection:'column',justifyContent:'center',}}>
-          <p className={styles.weight}>Weight: 12 - 12 cm</p>
-          <p className={styles.temp}>Temperaments: canson, odioso</p>
-        </div>
+
+
+  const route = (<div className={styles.image}>
+    <img src={props.image} alt={props.name} />
+  </div>)
+
+
+  return(<div className={styles.card}>
+    
+    {props.id === 'null'? route: <NavLink to={`/dog/${props.id}`}>{route}</NavLink>}
+
+    <div className={styles.description}>
+      <div style={{}}>
+        <h3 className={styles.name}>{props.name}</h3>
+      </div>
+      <div style={{ textAlign: "left", display: "flex" ,flexDirection:'column',justifyContent:'center',}}>
+        <p className={styles.weight}>{`Weight: ${props.weight}`}</p>
+        <p className={styles.temp}>{`Temperaments: ${props.temperaments.join(', ')}`}</p>
       </div>
     </div>
-  );
+  </div>) 
 };
 
 export default DogCard;

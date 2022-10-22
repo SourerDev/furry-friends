@@ -3,9 +3,10 @@
 }
 
 .card{
+    border:  1px solid;
     overflow: hidden;
     height: 254px;
-    width: 190px;
+    width: 280px;
     position: relative;
     transition: all 0.4s cubic-bezier(0.645,0.045,0.355,1);
     border-radius: 1em;
@@ -19,6 +20,14 @@
         transition: all 1s cubic-bezier(0.645,0.045,0.355,1);
         background-color: #0a3394;
         background: linear-gradient(to top, #0a3394, #4286f4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .image img{
+        height: 100%;
+        border: 1px solid;
     }
 
     .description{
