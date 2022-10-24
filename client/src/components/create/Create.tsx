@@ -100,7 +100,7 @@ const Create = () => {
       });
 
     dogsApi
-      .postDog(state)
+      .postDog({...state, life_span: state.life + ' years'})
       .then((response) => {
         if (response.data.msg) {
           setPost((previus) => {
