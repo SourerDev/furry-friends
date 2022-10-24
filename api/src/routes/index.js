@@ -120,4 +120,18 @@ router.post("/dogs", async (req, res) => {
   }
 });
 
+router.delete('/dog/:id',async(req,res)=>{
+  const {id} = req.params
+
+  try {
+    await Dog.destroy({
+      where: {id: id}
+    })
+
+    res.status(200).send({msg:'Correctly Eliminated'})
+  } catch (error) {
+    res.status(400).send(error.message)
+  }
+})
+
 module.exports = router;
