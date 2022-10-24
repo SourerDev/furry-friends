@@ -10,6 +10,7 @@ import NavBar from "./components/nav-bar/NavBar";
 import Home from "./components/home/Home";
 import Create from "./components/create/Create";
 import DogDetail from './components/dogs/DogDetail';
+import ErrorPage from './components/others/error/ErrorPage';
 import { actionCreators } from './redux';
 
 
@@ -19,8 +20,8 @@ function App() {
   const {getAllDogs,getAllTemperaments} = bindActionCreators(actionCreators,dispatch);
 
   useEffect(()=>{
-    //getAllTemperaments()
-    //getAllDogs()
+    getAllTemperaments()
+    getAllDogs()
   },[])
   return (
     <div className="App">
@@ -29,6 +30,7 @@ function App() {
         <Route path='/home' element={<><NavBar/><Home/></>} />
         <Route path='/create' element={<><NavBar/><Create/></>}/>
         <Route path='/dog/:id' element={<><NavBar/><DogDetail/></>}/>
+        <Route path='*' element={<><ErrorPage/></>}/>
       </Routes>
     </div>
   );

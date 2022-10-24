@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { ActionTypes } from "../../redux/actions/actionTypes";
 import {actionCreators,State,} from "../../redux/index";
+import Loading from "../others/loading/Loading";
+
+const styles = require('./Dogdetail.module.css').default
 
 const DogDetail=()=>{
     const dispatch = useDispatch()
@@ -20,11 +23,18 @@ const DogDetail=()=>{
     },[id])
     
     return(
-        <div>
-            <h1>{oneDog?.name}</h1>
-            <div>
-                <img src={oneDog?.image} alt={oneDog?.name} />
+        <div className={styles.container}>
+            {oneDog?.id ? <><div className={styles.header}>
+                <h1>{oneDog?.name}</h1>
+                <img src={oneDog?.image} alt={oneDog?.name} className={styles.image}/>
             </div>
+            <div className={styles.description}>
+                <p>{`Weight: ${oneDog?.weight} Kg`}</p>
+                <p>{`Height: ${oneDog?.height} Cm`}</p>
+                <p>{`Life: ${oneDog?.life_span}`}</p>
+                <p>{`${oneDog?.origin}`}</p>
+                <p>{`Temperaments: ${oneDog?.temperaments?.join(', ')}`}</p>
+            </div> </>:<Loading/>}
         </div>
     )
 }

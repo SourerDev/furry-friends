@@ -1,58 +1,287 @@
-:root{
-    --primary-color: #024a86;
-}
-
 .home{
-    min-height: 80vh;
-    box-shadow: 0px 1px 10px rgba(23, 23, 186, 0.83);
+    min-height: 87vh;
+    background: var(--back-color)
 }
 
     .header{
-        border: 1px solid var(--primary-color);
+        background-color:var(--nav-color);
+
         display: flex;
         justify-content: space-between;
-        margin: 0 5%;
+        margin: 0;
+        padding:.3rem 5%;
     }
+    .search div{
+        position: absolute;
+        width: 100%;
+        bottom: -1rem;
+        border-radius: .5rem;
+        color: #212121;
+        background-color: #f4f2f2;
+        transition: all cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    .search{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+    }
+        .searchInput{
+            font-family: inherit;
+            font-size: inherit;
+            background-color: #f4f2f2;
+            border: none;
+            color: #646464;
+            padding: .3rem 1rem;
+            border-radius: 30px;
+            width: 11em;
+            transition: all ease-in-out .5s;
+            margin-right: -2rem;
+        }
+        .searchInput:hover, .searchInput:focus{
+            border-radius: 5px;
+        }
+        .searchInput:focus{
+            outline: none;
+            background-color: #f0eeee;
+        }
+        .searchInput::-webkit-input-placeholder {
+            font-weight: 100;
+            color: #ccc;
+        }
+        .searchInput:focus + .searchButton{
+            background-color: #f0eeee;
+        }
+        .searchButton{
+            border: none;
+            background-color:#f4f2f2;
+            margin-top: .1em;
+        }
+        .searchButton:hover{
+            cursor: pointer;
+        }
+        .searchIcon{
+            height: 1.3em;
+            width: 1.3em;
+            fill: #646464;
+        }
+
+
         .buttonsFilter{
             position: relative;
+            display: flex;
         }
-            .formFilter{
-                border: 1px solid #ff0033;
-                border-radius: .5rem;
-                padding: .5rem;
-                position: absolute;
-                right: 60%;
+
+            .button{
+                width: 35px;
+                height: 35px;
+                cursor: pointer;
+                margin-left: .3rem;
+                padding: 0 .3rem;
+                border: none;
+                background: white;
+                border-radius: 50%;
+                font-weight: 500;
+                font-size: 16px;
+                margin: 0 1rem;
+                transition: all 250ms;
             }
-        .search{
-            position: relative;
-        }
-        .search div{
-            width: 8rem;
-            left: 2px;
-            position: absolute;
-            bottom:-22px;
-            border: 1px solid red;
-        }
+            
+            .button:hover{
+                color: white;
+                background: #181818;
+            }
+
+            .containerFilter{
+                display: flex;
+            }
+
+                .tempInput{
+                    width: 20px;
+                    height: 20px;
+                    padding: .3rem .3rem;
+                    background: #181818;
+                    border: solid 2px gray;
+                    border-radius: 30px;
+                    outline: none;
+                    color: white;
+                    transition: all 0.5s;
+                    margin-right: .5rem;
+                }
+                .tempInput:hover{
+                    border-color: cyan;
+                }
+                .tempInput::placeholder{
+                    color: gray;
+                    opacity: 0;
+                    transition:  opacity 300ms ease-out;
+                }
+                .tempInput:focus::placeholder{
+                    opacity: 1;
+                }
+                .tempInput:focus, .tempInput:not(:placeholder-shown){
+                    width: 150px;
+                    border-color: cyan;
+                    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2),0 1px 10px 0 cyan;
+                    padding-left: 1rem;
+
+                }
+
+            .checkbox{
+                position: relative;
+
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                
+            }
+                .checkmark{
+
+                    display: inline-block;
+                    width: 30px;
+                    height: 30px;
+                    background-color: #ddd;
+                    border-radius: 10px;
+                    position: relative;
+                    transition: background-color 0.4s;
+                    overflow: hidden;
+                    cursor: pointer;
+                }
+                .check{
+                    position: absolute;
+                }
+                .check:checked ~ .checkmark{
+                    background-color: #08bb68;
+                }
+                .checkmark::after{
+                    content: "";
+                    position: absolute;
+                    width: 5px;
+                    height: 10px;
+                    border-right: 3px solid #fff;
+                    border-bottom: 3px solid #fff;
+                    top: 44%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) rotateZ(40deg) scale(10);
+                    opacity: 0;
+                    transition: all 0.4s;
+                }
+                .check:checked ~ .checkmark::after{
+                    opacity: 1;
+                    transform: translate(-50%, -50%) rotateZ(40deg) scale(1);
+                }
+            
+            .filter{
+                margin-left: .5rem;
+            }
+            .btnFilter{
+                padding: 7px 10px;
+                border: unset;
+                border-radius: 15px;
+                color: #212121;
+                z-index: 1;
+                background: #e8e8e8;
+                position: relative;
+                font-weight: 1000;
+                font-size: 16px;
+                -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+                box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+                transition: all 250ms;
+                overflow: hidden;
+                cursor: pointer;
+            }
+            .btnFilter::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 0;
+                border-radius: 15px;
+                background-color: #212121;
+                z-index: -1;
+                -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+                box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+                transition: all 250ms
+               }
+               
+            .btnFilter:hover {
+                color: #e8e8e8;
+            }
+               
+            .btnFilter:hover::before {
+                width: 100%;
+            }
+
 
     .container{
-        border: 1px solid var(--primary-color);
-
-        min-height: 72vh;
+        min-height: 80vh;
         display: flex;
         flex-direction: row;
+
     }
         .buttonsPage{
-            border:1px solid #ff0033;
+            border: none;
             width: 5%;
             display: flex;
         }
         .buttonsPage button{
             width: 100%;
+            background: none;
+            border: none; 
+            transition: all 1s;
+
         }
-        .cards{
-            margin: 0 .5rem;
+        .buttonsPage button:hover{
+            background-color: #6464642e;
+            background-image: url('https://www.pngmart.com/files/3/Next-Button-Transparent-Background.png');
+            background-position: center;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            backdrop-filter: inherit;
+
+        }
+
+        .containerCards{
             width: 90%;
+            display: flex;
+            flex-direction: column;
         }
+            .order{
+                height: 1.5rem;
+                display: flex;
+                justify-content: space-between;
+                padding: .5rem 0;
+            }
+            .order span{
+                color: #ddd;
+            }
+                .order select{
+                    width: 10rem;
+                    border: none;
+                    border-radius: 10px;
+                    padding: .2rem 1rem;
+                    background-color:#ccc;
+                    color: #181818;
+                    transition: all 1s
+                }
+                .order select:hover{
+                    border-radius: 5px;
+                    background: #e8e8e8;
+                }
+                .order select option{
+                    transition: all 1s;
+                }
+            .cards{
+                padding: 1rem;
+                margin: 0 .5rem;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+            }
 
 .noSee{
     display: none;

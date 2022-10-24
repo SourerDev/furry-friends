@@ -1,5 +1,5 @@
 .container{
-    height:86%;
+    height:87vh;
     background-color: var(--back-color);
 
 }
@@ -47,9 +47,23 @@
             .error{
                 color: rgb(160, 42, 42);
             }
-            .containerCreate{
-                
-
+            .add{
+                position: absolute;
+                bottom: 0;
+                right:.3rem;
+                background: none;
+                border: none;
+                border-left: 1px solid gray ;
+                color: white;
+                font-size: large;
+                padding: 0 .5rem;
+                margin: .5rem 0;
+                transition: 1s all;
+            }
+            .add:hover{
+                background: var(--back-color);
+                border: none;
+                border-radius: 10px;
             }
                 .button{
                     width: 140px;
@@ -118,9 +132,16 @@
     padding-right: .5rem;
  }
 
+ .post{
+    display: block;
+ }
+
  @media screen and (max-width: 700px){
     .dogcard{
         margin-bottom: 2rem;
+    }
+    .container{
+        height: 105vh;
     }
  }
 

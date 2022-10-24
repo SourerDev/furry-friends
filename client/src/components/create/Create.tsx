@@ -1,15 +1,19 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { State } from "../../redux";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators, State } from "../../redux";
 
 import DogCard from "../dogs/DogCard";
 import image from "../../images";
 import { FormState } from "../../interfaces/interfaces";
-import { validations, divTime } from "../../utils";
+import { validations, divTime, temperamentsSelected } from "../../utils";
 import { dogsApi } from "../../services/index";
+import { bindActionCreators } from "redux";
 const styles = require("./create.module.css").default;
 
 const Create = () => {
+  const dispatch = useDispatch()
+  const {getAllDogs} = bindActionCreators(actionCreators,dispatch)
+
   const { temperaments } = useSelector((state: State) => state.temperament);
   const [state, setState] = useState<FormState>({
     name: "",
@@ -37,7 +41,6 @@ const Create = () => {
   const changeState = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
     let newValue = value.trimStart();
-
     const validateEntry = validations.validationInputs(name, newValue);
 
     if (!validateEntry.res)
@@ -63,13 +66,9 @@ const Create = () => {
   };
 
   const changeStateTemperament = (
-    evt: React.KeyboardEvent<HTMLInputElement>
+    evt: React.MouseEvent<HTMLButtonElement, MouseEvent>  
   ) => {
     evt.preventDefault();
-    const { keyCode } = evt;
-
-    if (keyCode === 13) {
-      console.log("enter");
       let temp: number = 0;
 
       temperaments?.forEach((element) => {
@@ -86,7 +85,7 @@ const Create = () => {
           };
         });
       }
-    }
+    
   };
 
   const submit = async (evt: React.FormEvent<HTMLFormElement>) => {
@@ -114,6 +113,19 @@ const Create = () => {
         }
 
         divTime("msgSuccess", styles.msgSuccess, styles.noSee, 3000);
+        setState(previus=>{
+          return{
+            ...previus,
+            name: "",
+            height: "",
+            weight: "",
+            life: "",
+            image: "",
+            temperament: "",
+            temperaments: [],
+          }
+        })
+        getAllDogs()
       })
       .catch((error) => {
         const msg = error?.response?.data?.msg
@@ -211,8 +223,8 @@ const Create = () => {
               list="temperaments"
               name="temperament"
               value={state.temperament}
-              onKeyDown={changeStateTemperament}
               onChange={changeState}
+              // onKeyDown={changeStateTemperament}
               className={styles.input}
               autoComplete='off'
             />
@@ -227,10 +239,13 @@ const Create = () => {
                 <option value={"No Temperaments"} />
               )}
             </datalist>
+            <button  onClick={changeStateTemperament} className={styles.add}>
+                Add
+            </button>
           </div>
 
           <div className={styles.containerCreate}>
-            <span>{error.post}</span>
+            <span className={styles.error +' '+ styles.post}>{error.post}</span>
             <button className={styles.button}
               type="submit"
               disabled={
@@ -253,7 +268,7 @@ const Create = () => {
                 id={'null'}
                 name={state.name}
                 image={state.image}
-                temperaments={['no have']}
+                temperaments={temperaments?.length && state.temperaments.length ? temperamentsSelected(temperaments,state.temperaments): ['']}
                 weight={state.weight}
               />
       </div>

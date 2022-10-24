@@ -7,7 +7,7 @@ const DogCard = (props: Dogs) => {
 
 
   const route = (<div className={styles.image}>
-    <img src={props.image} alt={props.name} />
+    <img src={props.image? props.image:'https://dbdzm869oupei.cloudfront.net/img/sticker/preview/9393.png'} alt={props.name} />
   </div>)
 
 
@@ -20,8 +20,8 @@ const DogCard = (props: Dogs) => {
         <h3 className={styles.name}>{props.name}</h3>
       </div>
       <div style={{ textAlign: "left", display: "flex" ,flexDirection:'column',justifyContent:'center',}}>
-        <p className={styles.weight}>{`Weight: ${props.weight}`}</p>
-        <p className={styles.temp}>{`Temperaments: ${props.temperaments.join(', ')}`}</p>
+        <p className={styles.weight}>{`Weight: ${props.weight} Kg`}</p>
+        <p className={styles.temp}>{`Temperaments: ${props?.temperaments?.join(', ')}`}</p>
       </div>
     </div>
   </div>) 

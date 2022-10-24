@@ -1,4 +1,4 @@
-import { Dogs } from "../interfaces/interfaces";
+import { Dogs, Temperament } from "../interfaces/interfaces";
 
 export const filter = (array: Array<Dogs> | null,value:string,exists:boolean)=>{
     if(!array) return
@@ -26,4 +26,16 @@ export const orderBy = (array: Array<Dogs> | null, order: number) => {
         default:
             return newarray
     }
+}
+
+
+export const temperamentsSelected=(array:Array<Temperament>, temp:Array<number>)=>{
+    let selected:Array<string> = []
+    
+    array.forEach(element =>{
+        if (temp.includes(element.id)) {
+            selected.push(element.name)
+        }
+    })
+    return selected.length ? selected : ['Without Temperaments']
 }

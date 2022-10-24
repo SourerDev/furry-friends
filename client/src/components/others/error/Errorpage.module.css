@@ -1,0 +1,88 @@
+.container{
+    background: var(--back-color);
+    height: 99vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .error{
+        display: flex;
+        font-size: 70px;
+        height: 50%;
+        align-items: flex-end;
+        justify-content: center;
+    }
+        .error img{
+            margin-bottom: 1.8rem;
+            height: 100px;
+        }
+        .error h1{
+            margin: 0;
+        }
+    .container p{
+        margin: 0;
+        font-size: 25px;
+    }
+    .shadow{
+        width: 300px;
+        height: 9px;
+        box-shadow: 4px 8px 50px -3px rgba(0,0,0,0.27);
+    }
+
+    /* From uiverse.io by @alexmaracinaru */
+.cta {
+    border: none;
+    background: none;
+  }
+  
+  .cta span {
+    padding-bottom: 7px;
+    letter-spacing: 4px;
+    font-size: 14px;
+    padding-right: 15px;
+    text-transform: uppercase;
+  }
+  
+  .cta svg {
+    transform: translateX(-8px);
+    transition: all 0.3s ease;
+  }
+  
+  .cta:hover svg {
+    transform: translateX(0);
+  }
+  
+  .cta:active svg {
+    transform: scale(0.9);
+  }
+  
+  .hoverunderlineanimation {
+    transform: rotate(180deg);
+    position: relative;
+    color:  white;
+    padding-bottom: 20px;
+  }
+  
+  .hoverunderlineanimation:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color:  white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .cta:hover .hoverunderlineanimation:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .back{
+    align-self: flex-end;
+    margin: 1rem;
+  }

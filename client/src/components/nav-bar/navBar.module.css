@@ -1,15 +1,9 @@
-:root{
-    --primary-colosr: #7570cbc1;
-}
-
 .container{
     display: flex;
     justify-content: space-between;
     text-align: left;
-    padding: .5rem 0;
-    margin-bottom: .5rem;
-    background-color:var(--primary-colosr);
-    box-shadow: 0px 1px 10px rgba(23, 23, 186, 0.83);
+    padding: .5rem 0 .5rem .5rem;
+    background-color:var(--nav-color);
 }
     .title{
         width: 55%;
@@ -24,7 +18,11 @@
         .welcome h2{
             margin: 0;
             font-size: 2.5rem;
+            transition: all 1s;
 
+        }
+        .welcome h2:hover{
+            color: rgb(50, 190, 190);
         }
 
     .nav{
@@ -47,14 +45,24 @@
             padding: .2rem .5rem;
             border-radius: .5rem;
             text-align: center;
+            transition: all 250ms;
+            white-space: nowrap;
         }
         .nav li:hover{
             padding-bottom:1rem;
-            background-color: #2c1782;
+            background-color: var(--primary-color);
+            font-weight: 1000;
             color: white;
         }
 
 .navLink{
     text-decoration: none;
     color: white;
+}
+@media screen and (max-width:500px) {
+    .welcome h2{
+        margin: 0;
+        transition: all .5s;
+        font-size: 1.9rem;
+    }
 }
