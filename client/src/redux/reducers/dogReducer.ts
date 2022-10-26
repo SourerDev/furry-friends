@@ -1,10 +1,12 @@
 import { ActionTypes } from "../actions/actionTypes";
 import { Action } from "../actions";
+import { DogState } from "./statesInterfaces.d";
 
-const initialState = {
+
+const initialState:DogState = {
     allDogs: [],
     Dogs: [],
-    oneDog: {}
+    oneDog: null
 }
 
 const reducer = (state: object = initialState, action: Action) => {

@@ -29,7 +29,7 @@ const DogDetail=()=>{
                 <img src={oneDog?.image} alt={oneDog?.name} className={styles.image}/>
             </div>
             <div className={styles.description}>
-                <p>{`Weight: ${oneDog?.weight} Kg`}</p>
+                <p>{`Weight: ${oneDog?.weight} Lb`}</p>
                 <p>{`Height: ${oneDog?.height} Cm`}</p>
                 <p>{`Life: ${oneDog?.life_span}`}</p>
                 <p>{`${oneDog?.origin}`}</p>

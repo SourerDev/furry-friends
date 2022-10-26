@@ -20,7 +20,7 @@ const DogCard = (props: Dogs) => {
         <h3 className={styles.name}>{props.name}</h3>
       </div>
       <div style={{ textAlign: "left", display: "flex" ,flexDirection:'column',justifyContent:'center',}}>
-        <p className={styles.weight}>{`Weight: ${props.weight} Kg`}</p>
+        <p className={styles.weight}>{`Weight: ${props.weight} Lb`}</p>
         <p className={styles.temp}>{`Temperaments: ${props?.temperaments?.join(', ')}`}</p>
       </div>
     </div>

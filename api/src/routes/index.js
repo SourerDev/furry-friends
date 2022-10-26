@@ -96,7 +96,7 @@ router.get("/temperaments", async (req, res) => {
 });
 
 router.post("/dogs", async (req, res) => {
-  const { name, height, weight, life_span, image, description, temperaments } =
+  const { name, height, weight, life_span, image, temperaments } =
     req.body;
   if (!name || !height || !weight) {
     res.status(400).json({ msg: "Missing Data" });
@@ -108,7 +108,6 @@ router.post("/dogs", async (req, res) => {
         weight,
         life_span: life_span ? life_span : null,
         image: image ? image : null,
-        description: description ? description : null,
       });
       if (temperaments.length) {
         dog.addTemperaments([...temperaments]);

@@ -67,7 +67,7 @@ export const validationInputs =(input: string, value:string)=>{
                 msg: Msg.noEmpty
             }
             let [min,max] = value.split('-')
-            let vMin = 3, vMax =50
+            let vMin = 3, vMax =200
             const special = specialEntry({min,max,vMin,vMax})
             
             if(special) return {
@@ -84,10 +84,6 @@ export const validationInputs =(input: string, value:string)=>{
 
         case Inputs.LIFE:
             {
-                if (!value.length) return{
-                    res:false,
-                    msg: Msg.noEmpty
-                }
                 let [min,max] = value.split('-')
                 let vMin = 6, vMax =25
                 const special = specialEntry({min,max,vMin,vMax})

@@ -1,4 +1,3 @@
-import { type } from "os";
 import { Dog, Dogs, Temperament } from "../../interfaces/interfaces";
 import { ActionTypes } from "./actionTypes";
 

@@ -23,6 +23,7 @@ function App() {
     getAllTemperaments()
     getAllDogs()
   },[])
+  
   return (
     <div className="App">
       <Routes>

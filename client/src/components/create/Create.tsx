@@ -10,11 +10,13 @@ import { dogsApi } from "../../services/index";
 import { bindActionCreators } from "redux";
 const styles = require("./create.module.css").default;
 
+
 const Create = () => {
-  const dispatch = useDispatch()
-  const {getAllDogs} = bindActionCreators(actionCreators,dispatch)
+  const dispatch = useDispatch();
+  const {getAllDogs} = bindActionCreators(actionCreators,dispatch);
 
   const { temperaments } = useSelector((state: State) => state.temperament);
+
   const [state, setState] = useState<FormState>({
     name: "",
     height: "",
@@ -90,6 +92,7 @@ const Create = () => {
 
   const submit = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+
     if (!state.name || !state.height || !state.weight)
       return setError((previus) => {
         return { ...previus, post: "Fields not entered correctly" };
@@ -125,7 +128,9 @@ const Create = () => {
             temperaments: [],
           }
         })
+
         getAllDogs()
+
       })
       .catch((error) => {
         const msg = error?.response?.data?.msg
@@ -135,9 +140,11 @@ const Create = () => {
           });
           divTime("msgSuccess", styles.msgSuccess, styles.noSee, 4000);
         }
-        console.log(error.message);
+        
       });
   };
+
+  
   return (
     <div className={styles.container}>
       <div className={styles.card}>

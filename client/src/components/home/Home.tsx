@@ -12,11 +12,14 @@ const styles = require("./Home.module.css").default;
 const Home = () => {
   const dispatch = useDispatch();
   const { setPage, setDogs } = bindActionCreators(actionCreators, dispatch);
+
   const [state, setState] = useState({
     search: "",
     temperament: "",
     existing: false,
+    order: 0
   });
+  
   const { Dogs, allDogs } = useSelector((state: State) => state.dogs);
   const { page } = useSelector((state: State) => state.app);
   const { temperaments } = useSelector((state: State) => state.temperament);
@@ -85,13 +88,14 @@ const Home = () => {
     if (newDogs?.length) {
       setDogs(newDogs);
       setPage(-page);
+      setState(prev=>{return {...prev,order:0}})
     }
   };
 
   const onOrder = (evt: React.ChangeEvent<HTMLSelectElement>) => {
     evt.preventDefault();
-    const { value } = evt.target;
-    console.log(value);
+    const  value = evt.target.value;
+    setState(prev=>{return{...prev, order: parseInt(value)}})
     const newDogs = orderBy(Dogs?.length ? Dogs : null, parseInt(value));
     if (newDogs?.length) {
       setDogs(newDogs);
@@ -202,10 +206,10 @@ const Home = () => {
             <select
               className={""}
               name="order"
-              defaultValue={"none"}
+              value={state.order}
               onChange={onOrder}
             >
-              <option value="none" disabled hidden>
+              <option value={0} disabled hidden>
                 Select Order
               </option>
               <optgroup label="Name">
