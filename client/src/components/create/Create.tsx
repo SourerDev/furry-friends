@@ -1,42 +1,41 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators, State } from "../../redux";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators, State } from '../../redux';
 
-import DogCard from "../dogs/DogCard";
-import image from "../../images";
-import { FormState } from "../../interfaces/interfaces";
-import { validations, divTime, temperamentsSelected } from "../../utils";
-import { dogsApi } from "../../services/index";
-import { bindActionCreators } from "redux";
-const styles = require("./create.module.css").default;
-
+import DogCard from '../dogs/DogCard';
+import image from '../../images';
+import { FormState } from '../../interfaces/interfaces';
+import { validations, divTime, temperamentsSelected } from '../../utils';
+import { dogsApi } from '../../services/index';
+import { bindActionCreators } from 'redux';
+import styles from './create.module.css';
 
 const Create = () => {
   const dispatch = useDispatch();
-  const {getAllDogs} = bindActionCreators(actionCreators,dispatch);
+  const { getAllDogs } = bindActionCreators(actionCreators, dispatch);
 
   const { temperaments } = useSelector((state: State) => state.temperament);
 
   const [state, setState] = useState<FormState>({
-    name: "",
-    height: "",
-    weight: "",
-    life: "",
-    image: "",
-    temperament: "",
+    name: '',
+    height: '',
+    weight: '',
+    life: '',
+    image: '',
+    temperament: '',
     temperaments: [],
   });
   const [error, setError] = useState({
-    name: "",
-    height: "",
-    weight: "",
-    life: "",
-    image: "",
-    temperaments: "",
-    post: "",
+    name: '',
+    height: '',
+    weight: '',
+    life: '',
+    image: '',
+    temperaments: '',
+    post: '',
   });
   const [post, setPost] = useState({
-    msg: "Added With Errors",
+    msg: 'Added With Errors',
     img: true,
   });
 
@@ -56,7 +55,7 @@ const Create = () => {
       setError((previus) => {
         return {
           ...previus,
-          [name]: "",
+          [name]: '',
         };
       });
     setState((previus) => {
@@ -68,26 +67,25 @@ const Create = () => {
   };
 
   const changeStateTemperament = (
-    evt: React.MouseEvent<HTMLButtonElement, MouseEvent>  
+    evt: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     evt.preventDefault();
-      let temp: number = 0;
+    let temp: number = 0;
 
-      temperaments?.forEach((element) => {
-        if (state.temperament.toLowerCase() === element.name.toLowerCase())
-          temp = element.id;
+    temperaments?.forEach((element) => {
+      if (state.temperament.toLowerCase() === element.name.toLowerCase())
+        temp = element.id;
+    });
+
+    if (temp && !state.temperaments?.find((element) => element === temp)) {
+      setState((previus) => {
+        return {
+          ...previus,
+          temperament: '',
+          temperaments: [...previus.temperaments, temp],
+        };
       });
-
-      if (temp && !state.temperaments?.find((element) => element === temp)) {
-        setState((previus) => {
-          return {
-            ...previus,
-            temperament: "",
-            temperaments: [...previus.temperaments, temp],
-          };
-        });
-      }
-    
+    }
   };
 
   const submit = async (evt: React.FormEvent<HTMLFormElement>) => {
@@ -95,15 +93,15 @@ const Create = () => {
 
     if (!state.name || !state.height || !state.weight)
       return setError((previus) => {
-        return { ...previus, post: "Fields not entered correctly" };
+        return { ...previus, post: 'Fields not entered correctly' };
       });
     else
       setError((previus) => {
-        return { ...previus, post: "" };
+        return { ...previus, post: '' };
       });
 
     dogsApi
-      .postDog({...state, life_span: state.life + ' years'})
+      .postDog({ ...state, life_span: state.life + ' years' })
       .then((response) => {
         if (response.data.msg) {
           setPost((previus) => {
@@ -115,56 +113,56 @@ const Create = () => {
           });
         }
 
-        divTime("msgSuccess", styles.msgSuccess, styles.noSee, 3000);
-        setState(previus=>{
-          return{
+        divTime('msgSuccess', styles.msgSuccess, styles.noSee, 3000);
+        setState((previus) => {
+          return {
             ...previus,
-            name: "",
-            height: "",
-            weight: "",
-            life: "",
-            image: "",
-            temperament: "",
+            name: '',
+            height: '',
+            weight: '',
+            life: '',
+            image: '',
+            temperament: '',
             temperaments: [],
-          }
-        })
+          };
+        });
 
-        getAllDogs()
-
+        getAllDogs();
       })
       .catch((error) => {
-        const msg = error?.response?.data?.msg
+        const msg = error?.response?.data?.msg;
         if (msg) {
           setPost((previus) => {
-            return { ...previus, img: false ,msg:msg };
+            return { ...previus, img: false, msg: msg };
           });
-          divTime("msgSuccess", styles.msgSuccess, styles.noSee, 4000);
+          divTime('msgSuccess', styles.msgSuccess, styles.noSee, 4000);
         }
-        
       });
   };
 
-  
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
-      </div>
+      <div className={styles.card}></div>
 
       <div className={styles.containerForm}>
         <form onSubmit={submit} className={styles.form}>
-
           <div className={styles.inputGroup}>
-          <input
+            <input
               type="value"
               required={false}
               id="name"
               name="name"
               value={state.name}
               onChange={changeState}
-              autoComplete='off'
+              autoComplete="off"
               className={styles.input}
             />
-            <label htmlFor="name" className={state.name? styles.noSee: styles.label}>Name</label>
+            <label
+              htmlFor="name"
+              className={state.name ? styles.noSee : styles.label}
+            >
+              Name
+            </label>
             <span className={styles.error}>{error.name}</span>
           </div>
 
@@ -178,7 +176,12 @@ const Create = () => {
               autoComplete="off"
               className={styles.input}
             />
-            <label htmlFor="height" className={state.height? styles.noSee: styles.label}>Height</label>
+            <label
+              htmlFor="height"
+              className={state.height ? styles.noSee : styles.label}
+            >
+              Height
+            </label>
             <span className={styles.error}>{error.height}</span>
           </div>
 
@@ -189,10 +192,15 @@ const Create = () => {
               name="weight"
               value={state.weight}
               onChange={changeState}
-              autoComplete='off'
+              autoComplete="off"
               className={styles.input}
             />
-            <label htmlFor="weight" className={state.weight ? styles.noSee: styles.label}>Weight</label>
+            <label
+              htmlFor="weight"
+              className={state.weight ? styles.noSee : styles.label}
+            >
+              Weight
+            </label>
             <span className={styles.error}>{error.weight}</span>
           </div>
 
@@ -203,10 +211,15 @@ const Create = () => {
               name="life"
               value={state.life}
               onChange={changeState}
-              autoComplete='off'
+              autoComplete="off"
               className={styles.input}
             />
-            <label htmlFor="life" className={state.life ? styles.noSee: styles.label}>Life Span</label>
+            <label
+              htmlFor="life"
+              className={state.life ? styles.noSee : styles.label}
+            >
+              Life Span
+            </label>
             <span className={styles.error}>{error.life}</span>
           </div>
 
@@ -217,10 +230,15 @@ const Create = () => {
               name="image"
               value={state.image}
               onChange={changeState}
-              autoComplete='off'
+              autoComplete="off"
               className={styles.input}
             />
-            <label htmlFor="image" className={state.image? styles.noSee: styles.label}>Image</label>
+            <label
+              htmlFor="image"
+              className={state.image ? styles.noSee : styles.label}
+            >
+              Image
+            </label>
             <span className={styles.error}>{error.image}</span>
           </div>
 
@@ -233,9 +251,14 @@ const Create = () => {
               onChange={changeState}
               // onKeyDown={changeStateTemperament}
               className={styles.input}
-              autoComplete='off'
+              autoComplete="off"
             />
-            <label htmlFor="temperament" className={state.temperament ? styles.noSee : styles.label}>Temperament</label>
+            <label
+              htmlFor="temperament"
+              className={state.temperament ? styles.noSee : styles.label}
+            >
+              Temperament
+            </label>
 
             <datalist id="temperaments">
               {temperaments?.length ? (
@@ -243,17 +266,20 @@ const Create = () => {
                   <option key={i} value={element.name} />
                 ))
               ) : (
-                <option value={"No Temperaments"} />
+                <option value={'No Temperaments'} />
               )}
             </datalist>
-            <button  onClick={changeStateTemperament} className={styles.add}>
-                Add
+            <button onClick={changeStateTemperament} className={styles.add}>
+              Add
             </button>
           </div>
 
           <div className={styles.containerCreate}>
-            <span className={styles.error +' '+ styles.post}>{error.post}</span>
-            <button className={styles.button}
+            <span className={styles.error + ' ' + styles.post}>
+              {error.post}
+            </span>
+            <button
+              className={styles.button}
               type="submit"
               disabled={
                 error.name ||
@@ -271,13 +297,17 @@ const Create = () => {
         </form>
       </div>
       <div className={styles.dogcard}>
-              <DogCard
-                id={'null'}
-                name={state.name}
-                image={state.image}
-                temperaments={temperaments?.length && state.temperaments.length ? temperamentsSelected(temperaments,state.temperaments): ['']}
-                weight={state.weight}
-              />
+        <DogCard
+          id={'null'}
+          name={state.name}
+          image={state.image}
+          temperaments={
+            temperaments?.length && state.temperaments.length
+              ? temperamentsSelected(temperaments, state.temperaments)
+              : ['']
+          }
+          weight={state.weight}
+        />
       </div>
       <div className={styles.noSee} id="msgSuccess">
         <img src={post.img ? image.success : image.warning} alt="No Found" />

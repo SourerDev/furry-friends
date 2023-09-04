@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
-import { actionCreators, State } from "../../redux";
-import DogCard from "../dogs/DogCard";
-import { dogsApi } from "../../services/index";
-import { divTime, orderBy, filter} from "../../utils";
-import Loading from "../others/loading/Loading";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators, State } from '../../redux';
+import DogCard from '../dogs/DogCard';
+import { dogsApi } from '../../services/index';
+import { divTime, orderBy, filter } from '../../utils';
+import Loading from '../others/loading/Loading';
 
-const styles = require("./Home.module.css").default;
+import styles from './Home.module.css';
 
 const Home = () => {
   const dispatch = useDispatch();
   const { setPage, setDogs } = bindActionCreators(actionCreators, dispatch);
 
   const [state, setState] = useState({
-    search: "",
-    temperament: "",
+    search: '',
+    temperament: '',
     existing: false,
-    order: 0
+    order: 0,
   });
-  
+
   const { Dogs, allDogs } = useSelector((state: State) => state.dogs);
   const { page } = useSelector((state: State) => state.app);
   const { temperaments } = useSelector((state: State) => state.temperament);
@@ -31,12 +31,12 @@ const Home = () => {
     if (value.length < state.search.length)
       allDogs?.length
         ? setDogs(allDogs)
-        : divTime("No Found", "no", styles.noSee, 4000);
+        : divTime('No Found', 'no', styles.noSee, 4000);
 
     setState((previus) => {
       return {
         ...previus,
-        [name]: name === "existing" ? checked : value.trimStart(),
+        [name]: name === 'existing' ? checked : value.trimStart(),
       };
     });
   };
@@ -51,7 +51,7 @@ const Home = () => {
       .catch((error) => {
         const msg = error?.response?.data?.msg;
         if (msg) {
-          divTime("NoFound", "no", styles.noSee, 4000);
+          divTime('NoFound', 'no', styles.noSee, 4000);
         }
       });
   };
@@ -61,7 +61,7 @@ const Home = () => {
     setPage(-page);
     return allDogs?.length
       ? setDogs(allDogs)
-      : divTime("NoFound", "no", styles.noSee, 4000);
+      : divTime('NoFound', 'no', styles.noSee, 4000);
   };
 
   const pagination = () => {
@@ -88,14 +88,18 @@ const Home = () => {
     if (newDogs?.length) {
       setDogs(newDogs);
       setPage(-page);
-      setState(prev=>{return {...prev,order:0}})
+      setState((prev) => {
+        return { ...prev, order: 0 };
+      });
     }
   };
 
   const onOrder = (evt: React.ChangeEvent<HTMLSelectElement>) => {
     evt.preventDefault();
-    const  value = evt.target.value;
-    setState(prev=>{return{...prev, order: parseInt(value)}})
+    const value = evt.target.value;
+    setState((prev) => {
+      return { ...prev, order: parseInt(value) };
+    });
     const newDogs = orderBy(Dogs?.length ? Dogs : null, parseInt(value));
     if (newDogs?.length) {
       setDogs(newDogs);
@@ -160,7 +164,7 @@ const Home = () => {
                     <option key={i} value={element.name} />
                   ))
                 ) : (
-                  <option value={"No Temperaments"} />
+                  <option value={'No Temperaments'} />
                 )}
               </datalist>
             </div>
@@ -176,12 +180,16 @@ const Home = () => {
               <label
                 htmlFor="existing"
                 className={styles.checkmark}
-                title={"Existing Breed"}
+                title={'Existing Breed'}
               ></label>
               {/* <label htmlFor="existing" className={styles.checkText}>Existing Breed</label> */}
             </div>
             <div className={styles.filter}>
-              <button type="submit" className={styles.btnFilter} onClick={onFilter}>
+              <button
+                type="submit"
+                className={styles.btnFilter}
+                onClick={onFilter}
+              >
                 Filter
               </button>
             </div>
@@ -194,7 +202,7 @@ const Home = () => {
         {/* */}
         <div
           className={styles.buttonsPage}
-          style={{ transform: "rotate(180deg)" }}
+          style={{ transform: 'rotate(180deg)' }}
         >
           <button onClick={prevPage}></button>
         </div>
@@ -204,7 +212,7 @@ const Home = () => {
           {/* */}
           <div className={styles.order}>
             <select
-              className={""}
+              className={''}
               name="order"
               value={state.order}
               onChange={onOrder}
@@ -222,7 +230,9 @@ const Home = () => {
               </optgroup>
             </select>
 
-            <span>{`page: ${page + 1} of ${Math.ceil(Dogs?.length ? Dogs?.length / 8: 0)}`}</span>
+            <span>{`page: ${page + 1} of ${Math.ceil(
+              Dogs?.length ? Dogs?.length / 8 : 0
+            )}`}</span>
           </div>
 
           {/* */}
@@ -238,7 +248,9 @@ const Home = () => {
                   weight={element.weight}
                 />
               ))
-            ) : (<Loading/>)}
+            ) : (
+              <Loading />
+            )}
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import image from "../../../images";
 
-const styles = require("./Errorpage.module.css").default;
+import styles from "./Errorpage.module.css"
 const ErrorPage = () => {
   return (
     <div className={styles.container}>
