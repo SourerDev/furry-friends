@@ -1,4 +1,5 @@
 'use client'
+import { DetailedHTMLProps, ButtonHTMLAttributes } from 'react'
 
 export function NavBar() {
   return (
@@ -9,8 +10,30 @@ export function NavBar() {
         <li>Sobre</li>
         <li>Adopción</li>
         <li>Contacto</li>
-        <li>Donar</li>
+        <li>
+          <Button>¡Donar!</Button>
+        </li>
       </ul>
     </nav>
+  )
+}
+
+const VARIANTS = [''] as const
+
+type ButtonProps = {
+  variant: number
+} & DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>
+
+function Button({ children, ...props }: ButtonProps) {
+  return (
+    <button
+      className="bg-slate-50 text-slate-500 font-semibold h-10 px-5"
+      {...props}
+    >
+      {children}
+    </button>
   )
 }

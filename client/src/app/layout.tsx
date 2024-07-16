@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='p-6 h-[1000px]'>
+      <body className="p-6">
         <NavBar />
         {children}
       </body>
